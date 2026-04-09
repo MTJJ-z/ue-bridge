@@ -1,0 +1,37 @@
+name: "UE MQTT Bridge"
+version: "1.0.0"
+slug: "ue_mqtt_bridge"
+description: "Bridge MQTT messages to Unreal Engine over WebSocket."
+url: "https://example.local/ue-mqtt-bridge"
+startup: application
+boot: auto
+init: false
+host_network: true
+ports:
+  8765/tcp: 8765
+ports_description:
+  8765/tcp: "WebSocket port for Unreal Engine clients"
+options:
+  mqtt_host: "core-mosquitto"
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_client_id: "ha_ue_bridge"
+  mqtt_topics:
+    - "ue/#"
+  ws_host: "0.0.0.0"
+  ws_port: 8765
+  auth_token: ""
+  log_level: "info"
+schema:
+  mqtt_host: str
+  mqtt_port: port
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_client_id: str
+  mqtt_topics:
+    - str
+  ws_host: str
+  ws_port: port
+  auth_token: str?
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
